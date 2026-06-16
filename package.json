@@ -4,6 +4,16 @@
   "private": true,
   "description": "AI-automated motivational YouTube channel — cinematic footage + animated motivational text + royalty-free music, rendered to MP4 via Remotion.",
   "scripts": {
-    "test:render": "npm --prefix remotion/motivation-renderer run render"
+    "test:render": "npm --prefix remotion/motivation-renderer run render",
+    "fetch:footage": "node scripts/fetch-footage.js",
+    "generate:quotes": "node scripts/generate-quotes.js",
+    "render:video": "node scripts/render-video.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.2",
+    "axios": "^1.7.0",
+    "cli-progress": "^3.12.0",
+    "dotenv": "^16.4.0",
+    "fs-extra": "^11.2.0"
   }
 }
