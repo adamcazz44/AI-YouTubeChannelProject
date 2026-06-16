@@ -27,11 +27,22 @@ scripts\       Python/Node utility scripts
 quotes\        generated quote JSON files
 ```
 
+## Setup
+These steps populate the gitignored asset folders and secrets a fresh checkout needs:
+
+1. **Secrets** — copy `.env.example` to `.env` and fill `PEXELS_API_KEY` (Spec 2) and `ANTHROPIC_API_KEY` (Spec 3).
+2. **Footage** — `npm run fetch:footage -- "<keyword>"` downloads stock clips into `footage/`.
+3. **Quotes** — `npm run generate:quotes -- "<theme>"` writes phrase JSON into `quotes/`.
+4. **Music** *(one-time, manual)* — the renderer (Spec 4) looks for an `.mp3`/`.wav` in `music/`.
+   Download a royalty-free track from <https://pixabay.com/music/> (search *"epic motivational instrumental"*)
+   and save it as `music/track-01.mp3`. Music files are gitignored, so each checkout must add its own.
+   If `music/` is empty the video still renders — silently.
+
 ## Verify the render pipeline
 ```sh
-npm run test:render
+npm run test:render                              # Spec 1: renders TestComp -> output/test-render.mp4
+npm run render:video -- "grinding in obscurity"  # Spec 4: renders MotivationVideo from quotes + footage
 ```
-Renders `TestComp` to `output/test-render.mp4`.
 
 ## Stack
 Node.js + Remotion. **npm only** (no Yarn/pnpm). Windows / `E:` drive.
