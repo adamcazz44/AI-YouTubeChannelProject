@@ -40,9 +40,15 @@ These steps populate the gitignored asset folders and secrets a fresh checkout n
 
 ## Verify the render pipeline
 ```sh
-npm run test:render                              # Spec 1: renders TestComp -> output/test-render.mp4
-npm run render:video -- "grinding in obscurity"  # Spec 4: renders MotivationVideo from quotes + footage
+npm run test:render                                   # Spec 1: renders TestComp -> output/test-render.mp4
+npm run render:video -- "grinding in obscurity"       # Spec 4: renders MotivationVideo from quotes + footage
+npm run generate:thumbnail -- --theme "grinding in obscurity"  # Spec 5: 1280x720 thumbnail PNG
+npm run produce -- "grinding in obscurity"            # Spec 5: render + thumbnail in one command
 ```
+
+> **Thumbnail dependency note:** Spec 5 uses **`node-canvas`** (`canvas`) for compositing — it
+> installed cleanly with prebuilt binaries on this machine (Node 24, no build tools needed).
+> If a future `npm install` of `canvas` fails to build, swap to the drop-in `@napi-rs/canvas`.
 
 ## Stack
 Node.js + Remotion. **npm only** (no Yarn/pnpm). Windows / `E:` drive.

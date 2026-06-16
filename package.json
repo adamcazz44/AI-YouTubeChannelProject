@@ -7,13 +7,18 @@
     "test:render": "npm --prefix remotion/motivation-renderer run render",
     "fetch:footage": "node scripts/fetch-footage.js",
     "generate:quotes": "node scripts/generate-quotes.js",
-    "render:video": "node scripts/render-video.js"
+    "render:video": "node scripts/render-video.js",
+    "generate:thumbnail": "node scripts/generate-thumbnail.js",
+    "produce": "node scripts/produce-video.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.2",
     "axios": "^1.7.0",
+    "canvas": "^3.2.3",
     "cli-progress": "^3.12.0",
     "dotenv": "^16.4.0",
-    "fs-extra": "^11.2.0"
+    "fluent-ffmpeg": "^2.1.3",
+    "fs-extra": "^11.2.0",
+    "sharp": "^0.35.1"
   }
 }

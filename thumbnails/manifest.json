@@ -1,0 +1,18 @@
+{
+  "thumbnails": [
+    {
+      "file": "thumbnails/grinding_in_obscurity_20260616_165108.png",
+      "theme": "grinding in obscurity",
+      "headline": "Invisible now. Inevitable later.",
+      "source_video": "output/grinding_in_obscurity_20260616_163630.mp4",
+      "generated_at": "2026-06-16T21:51:08Z"
+    },
+    {
+      "file": "thumbnails/building_wealth_alone_20260616_165516.png",
+      "theme": "building wealth alone",
+      "headline": "No co-founder. No safety net. Just you.",
+      "source_video": "output/building_wealth_alone_20260616_165134.mp4",
+      "generated_at": "2026-06-16T21:55:16Z"
+    }
+  ]
+}
