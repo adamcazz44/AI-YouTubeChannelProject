@@ -49,10 +49,11 @@ type StyleSpec = {
   maxWidth: string;
 };
 
+// Sized for a vertical 1080-wide Shorts frame (big, mobile-readable, centered).
 const STYLE_MAP: Record<Phrase["style"], StyleSpec> = {
-  short: { fontSize: 72, letterSpacing: "0.08em", color: "#FFFFFF", transform: "uppercase", maxWidth: "85%" },
-  medium: { fontSize: 52, letterSpacing: "0.04em", color: "#F5F5F5", transform: "title", maxWidth: "80%" },
-  long: { fontSize: 38, letterSpacing: "0.02em", color: "#EEEEEE", transform: "none", maxWidth: "75%" },
+  short: { fontSize: 86, letterSpacing: "0.06em", color: "#FFFFFF", transform: "uppercase", maxWidth: "90%" },
+  medium: { fontSize: 64, letterSpacing: "0.03em", color: "#F5F5F5", transform: "title", maxWidth: "88%" },
+  long: { fontSize: 48, letterSpacing: "0.02em", color: "#EEEEEE", transform: "none", maxWidth: "86%" },
 };
 
 function titleCase(s: string): string {

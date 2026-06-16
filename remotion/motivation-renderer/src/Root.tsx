@@ -45,13 +45,14 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
       />
 
-      {/* Spec 4 — the production renderer. Duration is derived from the phrases. */}
+      {/* Spec 4 — the production renderer. Vertical 1080x1920 for YouTube Shorts
+          (<=60s). Duration is derived from the phrases. */}
       <Composition
         id="MotivationVideo"
         component={MotivationVideo}
         fps={FPS}
-        width={1920}
-        height={1080}
+        width={1080}
+        height={1920}
         defaultProps={motivationDefaults}
         calculateMetadata={({props}) => {
           const frames = props.phrases.reduce(

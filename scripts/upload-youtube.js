@@ -22,7 +22,7 @@ Digital Grind is fuel for the self-taught entrepreneur grinding to build real we
 
 The grind is the goal.
 
-#motivation #onlinebusiness #entrepreneur #digitalgrind #financialfreedom #sidehustle #internetbusiness #buildwealthonline`;
+#Shorts #motivation #onlinebusiness #entrepreneur #digitalgrind #financialfreedom #sidehustle #internetbusiness #buildwealthonline`;
 
 const TAGS = [
   "motivation", "online business", "entrepreneur", "financial freedom",

@@ -51,12 +51,12 @@ function main() {
   if (hasQuotes) console.log(`⏭  Quotes already exist for "${theme}" — skipping generate.`);
   else run(["scripts/generate-quotes.js", theme], "generate-quotes");
 
-  // b. footage — skip if 5+ clips already fetched for this keyword.
+  // b. footage — Shorts strategy reuses the existing clip pool (render-video selects by
+  // keyword overlap + backfills from the whole pool), so we skip fetching when the pool
+  // already has 5+ clips. This avoids per-theme Pexels calls. Only fetch if the pool is bare.
   const fm = readJsonSafe(FOOTAGE_MANIFEST, { clips: [] });
-  const clipCount = (fm.clips || []).filter(
-    (c) => (c.keyword || "").toLowerCase().trim() === theme.toLowerCase().trim()
-  ).length;
-  if (clipCount >= 5) console.log(`⏭  ${clipCount} clips already fetched for "${theme}" — skipping fetch.`);
+  const poolSize = (fm.clips || []).length;
+  if (poolSize >= 5) console.log(`⏭  Footage pool has ${poolSize} clips — reusing (no fetch).`);
   else run(["scripts/fetch-footage.js", theme], "fetch-footage");
 
   // c. produce video + thumbnail
