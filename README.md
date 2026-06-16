@@ -33,10 +33,12 @@ These steps populate the gitignored asset folders and secrets a fresh checkout n
 1. **Secrets** — copy `.env.example` to `.env` and fill `PEXELS_API_KEY` (Spec 2) and `ANTHROPIC_API_KEY` (Spec 3).
 2. **Footage** — `npm run fetch:footage -- "<keyword>"` downloads stock clips into `footage/`.
 3. **Quotes** — `npm run generate:quotes -- "<theme>"` writes phrase JSON into `quotes/`.
-4. **Music** *(one-time, manual)* — the renderer (Spec 4) looks for an `.mp3`/`.wav` in `music/`.
-   Download a royalty-free track from <https://pixabay.com/music/> (search *"epic motivational instrumental"*)
-   and save it as `music/track-01.mp3`. Music files are gitignored, so each checkout must add its own.
-   If `music/` is empty the video still renders — silently.
+4. **Music** — the renderer (Spec 4) picks a random `.mp3`/`.wav` from `music/`. Tracks are gitignored,
+   so each checkout must add its own. Current tracks are from **oceanicpiano.com, licensed CC BY 3.0**
+   (commercial use allowed, **attribution required** — the credit line is already in the upload
+   description in `scripts/upload-youtube.js`). If you swap in tracks under a different license, update
+   that credit accordingly. No-attribution alternative: download from the **YouTube Audio Library**
+   (Studio → Audio Library → filter "no attribution"). If `music/` is empty the video still renders — silently.
 
 ## Verify the render pipeline
 ```sh

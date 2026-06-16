@@ -22,6 +22,8 @@ Digital Grind is fuel for the self-taught entrepreneur grinding to build real we
 
 The grind is the goal.
 
+Music: http://www.oceanicpiano.com (licensed CC BY 3.0)
+
 #Shorts #motivation #onlinebusiness #entrepreneur #digitalgrind #financialfreedom #sidehustle #internetbusiness #buildwealthonline`;
 
 const TAGS = [
