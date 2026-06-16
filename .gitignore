@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# generated / downloaded assets (keep the folder, ignore the contents)
+output/*
+footage/*
+music/*
+!output/.gitkeep
+!footage/.gitkeep
+!music/.gitkeep
+
+# secrets
+.env
+
+# OS
+Thumbs.db
+.DS_Store

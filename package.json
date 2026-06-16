@@ -1,0 +1,9 @@
+{
+  "name": "ai-youtubechannelproject",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-automated motivational YouTube channel — cinematic footage + animated motivational text + royalty-free music, rendered to MP4 via Remotion.",
+  "scripts": {
+    "test:render": "npm --prefix remotion/motivation-renderer run render"
+  }
+}
