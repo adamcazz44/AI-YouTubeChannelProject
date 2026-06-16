@@ -23,6 +23,10 @@ thumbnails/*.jpg
 
 # temp scratch (frame extraction etc.)
 temp/
+
+# machine-local cron state + error log (Spec 6)
+scripts/cron-state.json
+scripts/cron-error.log
 # track the footage manifest (but never the .mp4 clips themselves)
 !footage/manifest.json
 
