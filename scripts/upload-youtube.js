@@ -22,6 +22,8 @@ Digital Grind is fuel for the self-taught entrepreneur grinding to build real we
 
 The grind is the goal.
 
+🔧 Free tools for online builders → https://getnetstats.com
+
 Music: http://www.oceanicpiano.com (licensed CC BY 3.0)
 
 #Shorts #motivation #onlinebusiness #entrepreneur #digitalgrind #financialfreedom #sidehustle #internetbusiness #buildwealthonline`;
@@ -181,7 +183,13 @@ async function main() {
   console.log("🔒 Status: Private (pending your QC review)");
 }
 
-main().catch((err) => {
-  console.error(`❌ Unexpected error: ${err && err.message ? err.message : err}`);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(`❌ Unexpected error: ${err && err.message ? err.message : err}`);
+    process.exit(1);
+  });
+}
+
+// Exported so other scripts can reuse the canonical description/metadata
+// (e.g. backfilling the description on already-uploaded videos).
+module.exports = { DESCRIPTION, TAGS, CATEGORY_ID, buildTitle, selectHeadline };
