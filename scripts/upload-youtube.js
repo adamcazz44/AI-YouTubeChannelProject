@@ -22,7 +22,7 @@ Digital Grind is fuel for the self-taught entrepreneur grinding to build real we
 
 The grind is the goal.
 
-🔧 Free tools for online builders → https://getnetstats.com
+🌐 Check your IP & internet speed — free, no signup → https://getnetstats.com
 
 Music: http://www.oceanicpiano.com (licensed CC BY 3.0)
 
