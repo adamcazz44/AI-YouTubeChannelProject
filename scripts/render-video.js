@@ -26,6 +26,7 @@ const MUSIC_DIR = path.join(ROOT, "music");
 const OUTPUT_DIR = path.join(ROOT, "output");
 const OUTPUT_MANIFEST = path.join(OUTPUT_DIR, "manifest.json");
 const PROPS_FILE = path.join(ROOT, ".render-props.json"); // no spaces in this path
+const RENDER_PUBLIC = path.join(ROOT, ".render-public"); // lean per-render public dir
 
 const MIN_CLIPS = 5;
 const MIN_MATCHING = 3;
@@ -207,6 +208,17 @@ function main() {
   if (musicFile) props.musicFile = musicFile;
   fs.writeJsonSync(PROPS_FILE, props, { spaces: 0 });
 
+  // Build a LEAN public dir containing ONLY the assets this render uses, so Remotion
+  // copies a few MB instead of the entire ~4.7 GB project root (node_modules/.git/all
+  // 45 clips). staticFile() paths ("footage/x.mp4", "music/y.mp3") resolve inside it.
+  fs.emptyDirSync(RENDER_PUBLIC);
+  for (const c of selected) {
+    fs.copySync(path.join(ROOT, c.file), path.join(RENDER_PUBLIC, c.file));
+  }
+  if (musicAbs) {
+    fs.copySync(musicAbs, path.join(RENDER_PUBLIC, "music", path.basename(musicAbs)));
+  }
+
   const videoSeconds = phrases.reduce(
     (sum, p) => sum + (Number(p.screen_duration_seconds) || 0),
     0
@@ -223,12 +235,13 @@ function main() {
       "MotivationVideo",
       fwd(outAbs),
       `--props=${fwd(PROPS_FILE)}`,
-      `--public-dir=${fwd(ROOT)}`,
+      `--public-dir=${fwd(RENDER_PUBLIC)}`,
     ],
     { cwd: REMOTION_DIR, stdio: "inherit", shell: true }
   );
 
   fs.removeSync(PROPS_FILE);
+  fs.removeSync(RENDER_PUBLIC);
 
   if (res.status !== 0) {
     console.error("❌ Remotion render failed (see output above).");
@@ -264,6 +277,7 @@ try {
   main();
 } catch (err) {
   fs.removeSync(PROPS_FILE);
+  fs.removeSync(RENDER_PUBLIC);
   console.error(`❌ Unexpected error: ${err && err.message ? err.message : err}`);
   process.exit(1);
 }
