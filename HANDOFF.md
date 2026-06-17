@@ -70,3 +70,26 @@ Uploads are **always private**; a human runs `publish` after QC. Nothing goes pu
 
 ## Recommended next phase (for Hermes to plan)
 Order to get to a publishable daily channel: **(1) duration knob + (2) real music** → **(3) render speedup** → **(8) first real publish for QC** → **(7) schedule the cron**. Hygiene (4 Pexels, 5 Codex review) can run in parallel.
+
+---
+
+## UPDATE — post-handoff changes (2026-06-16, supersedes points above where they conflict)
+
+Everything above still holds except as noted here. The project went fully live after the handoff:
+
+**Format pivoted to Shorts.** The renderer is now **vertical 1080×1920, Shorts-only** (≤60s; ~55s videos) — this resolved the old "3–5 min" duration gap (Shorts are meant to be short). 16:9 long-form is a future option on the same engine. `TestComp` stays 16:9 (Spec 1 regression intact).
+
+**Whole system is live & fully exercised** — OAuth done, channel phone-verified (custom thumbnails work), and **upload + thumbnail + publish + reject** all proven end-to-end. First Short is PUBLIC: https://youtu.be/g4dbh06kri0.
+
+**The daily cron is LIVE (you wired it):** job "Digital Grind — Daily Pipeline" (`cb17622f03c7`, `0 9 * * *`) runs `npm run cron:daily` → produces a **PRIVATE** Short → you notify Adam with the review link + `publish`/`reject` commands. `scripts/cron-state.json` is pre-set to start at **theme #2 "building wealth alone"** (theme #1 "grinding in obscurity" is already published). On failure, `cron-daily.js` logs to `scripts/cron-error.log` and does **NOT** advance the index (retries the same theme next day).
+
+**Operating rules for you (Hermes) going forward:**
+- **NEVER auto-publish.** Uploads are private; only Adam runs `npm run publish` after QC. (Your cron job already respects this — don't add a publish step.)
+- **Don't run `fetch:footage`.** The Pexels key is compromised/pending rotation, and the pipeline reuses the existing 45-clip pool anyway (footage step skips when pool ≥ 5). Avoid burning the bad key.
+- `cron-state.json` and `cron-error.log` are **machine-local (gitignored)** — not in the repo.
+
+**Other deltas since handoff:** placeholder music replaced with real **CC BY 3.0** tracks (oceanicpiano, credit line auto-added to every description); per-render copy slimmed **4.7 GB → ~340 MB**; descriptions now cross-promote **https://getnetstats.com** ("Check your IP & internet speed — free, no signup").
+
+**Still open — your court (verifier-must-be-a-different-model-family rule):**
+- **The entire project shipped UN-GATED by Codex.** OpenAI/Codex re-auth is failing (401). Per the rule (Hermes plans → Claude Code builds → **Codex verifies**), route an independent **Codex review** of this repo once that auth is restored — it has never had a second-model review.
+- Pexels key rotation is Adam's action (support email to info@pexels.com).
